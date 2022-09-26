@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head">
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<aside th:replace="base :: aside"></aside>
+
+<div class="content-main-form">
+    <div class="content-form-mov">
+        <div class="header-index">
+            <h2 class="title-form-h2">Sistema de Gestión de Ingreso y Egresos</h2>
+        </div>
+        <div class="sub-title">
+            <h3>Transacciones</h3>
+        </div>
+
+        <br>
+        <form th:action="@{/nuevoRegMov}" th:object="${movimientos}" method="post" class="area-form-mov" >
+            <div class="text-nuevo-mov-din"><h2 class="nuevo-mov-title">Nuevo Movimiento de Dinero</h2></div>
+
+            <div class="text-campos-1">
+                <label for="concepto" class="label">Concepto </label>
+                <input id="concepto" type="text" placeholder=" " th:field="*{concepto}" class="input" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('concepto')}" th:errors="*{concepto}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="text-campos-2">
+                <label for="monto" class="label">Monto </label>
+                <input id="monto" type="text" placeholder=" " th:field="*{monto}" class="input" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="text-campos-3">
+                <label for="fechaCreacion" class="label">Fecha </label>
+                <input id="fechaCreacion" type="date" th:field="*{fechaCreacion}" class="input" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="bt-guardar-form-mov">
+                <input type="submit" class="btn-guardar" value="Guardar">
+            </div>
+
+        </form>
+    </div>
+</div>
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>

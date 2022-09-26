@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside th:replace="base :: aside"></aside>
+
+<div class="content-main-form">
+    <div class="content-form-mov">
+        <div class="header-index">
+            <h2 class="title-form-h2">Sistema de Gestión de Empleado</h2>
+        </div>
+        <div class="sub-title">
+            <h3>Usuarios</h3>
+        </div>
+
+        <br>
+        <form th:action="@{/nuevoRegEmpl}" th:object="${empleados}" method="post" class="area-form-edt-empl" >
+            <div class="text-nuevo-mov-din"><h2 class="nuevo-mov-title">Nuevo registro de usuarios</h2></div>
+
+            <div class="text-campos-1">
+                <label for="nombre" class="label">Nombre </label>
+                <input id="nombre" type="text" placeholder=" " th:field="*{nombre}" class="input" th:errorClass="is-invalid">
+<!--                <div th:if="${#fields.hasErrors('concepto')}" th:errors="*{concepto}" class="invalid-feedback"></div>-->
+            </div>
+
+            <div class="text-campos-2">
+                <label for="correo" class="label">Correo </label>
+                <input id="correo" type="text" placeholder=" " th:field="*{correo}" class="input" th:errorClass="is-invalid">
+<!--                <div th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}" class="invalid-feedback"></div>-->
+            </div>
+
+            <div class="text-campos-3">
+                <label for="role" class="label">Rol </label>
+                <input id="role" type="text" placeholder=" " th:field="*{role}" class="input" th:errorClass="is-invalid">
+<!--                <div th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}" class="invalid-feedback"></div>-->
+            </div>
+
+
+<!--            <div class="text-campos-3">-->
+<!--                <label for="role" class="label">Rol</label>-->
+<!--                <select id="role" name="role">-->
+<!--                    <option selected>Seleccione un rol</option>-->
+<!--                    <option value="1" th:each="empleado: ${empleados}" th:value="${empleado.id}"  th:text="${empleado.role}" th:field="*{role}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+
+
+            <div class="text-campos-5">
+                <label for="fechaCreacion" class="label">Fecha creación</label>
+                <input id="fechaCreacion" type="date" th:field="*{fechaCreacion}" class="input" th:errorClass="is-invalid">
+<!--                <div th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}" class="invalid-feedback"></div>-->
+            </div>
+
+            <div class="bt-guardar-form-mov">
+                <input type="submit" class="btn-guardar" value="Guardar">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>

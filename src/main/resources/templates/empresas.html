@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="base :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="POST">
+    <button type="submit">Cerrar Sesión </button>
+</form>
+<aside th:replace="base :: aside"></aside>
+
+<div class="main_content-index">
+    <div class="header-index">
+        <h2>Sistema de Gestión de Empesas</h2>
+    </div>
+    <div class="sub-title">
+        <h3>Empresas</h3>
+    </div>
+
+
+    <table class="table">
+
+        <div class="nuevo-mov">
+            <a href="/nuevoRegEmpr" class="texo-nuevo-reg"><i class="fas fa-user-plus"></i>&nbsp;Nuevo registro</a>
+        </div>
+
+        <thead class="thead">
+        <tr>
+            <td scope="col">Id</td>
+            <td scope="col">Nombre</td>
+            <td scope="col">Nit</td>
+            <td scope="col">Dirección</td>
+            <td scope="col">Teléfono</td>
+            <td scope="col">Fecha creación</td>
+            <td scope="col" class="acciones" colspan="2">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empr:${empresas}">
+            <th th:text="${empr.id}"></th>
+            <td th:text="${empr.nombre}"></td>
+            <td th:text="${empr.nit}"></td>
+            <td th:text="${empr.direccion}"></td>
+            <td th:text="${empr.telefono}"></td>
+            <td th:text="${empr.fechaCreacion}"></td>
+
+            <td>
+                <a th:href="@{/{id}/editar/empresa/(id=${empr.id})}" class="btn btn-warning"><i
+                        class="fas fa-edit"></i>Editar</a>
+                <a href="#" onclick="eliminarEmpresa(this)" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>Eliminar</a>
+                <form th:action="@{/{id}/eliminar/empresas/(id=${empr.id})}" method="post"></form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+<!--    <div class="suma-total">-->
+<!--        <label class="total-text">Total $: </label>-->
+<!--        <p class="p-totales" th:text="${totales}"></p>-->
+<!--    </div>-->
+</div>
+
+<script>
+    function eliminarEmpresa(elemento) {
+        var ok = confirm('¿Estas seguro de eliminar al contacto?');
+
+        if (ok) {
+            elemento.nextElementSibling.submit();
+        }
+    }
+</script>
+
+
+
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>

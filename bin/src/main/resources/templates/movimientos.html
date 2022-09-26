@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head">
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<aside th:replace="base :: aside"></aside>
+<div class="main_content-index">
+    <div class="header-index">
+        <h2>Sistema de Gestión de Ingreso y Egresos</h2>
+    </div>
+    <div class="sub-title">
+        <h3>Transacciones</h3>
+    </div>
+    <div class="nuevo-mov">
+        <a href="/nuevoRegMov" class=""><i class="fas fa-user-plus"></i>&nbsp;Nuevo registro</a>
+    </div>
+
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <td scope="col">Id</td>
+                <td scope="col">Concepto</td>
+                <td scope="col">Monto</td>
+                <td scope="col">Fecha</td>
+                <td scope="col">Usuario</td>
+                <td scope="col" class="acciones" colspan="2">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mov:${movimientos}">
+                <th th:text="${mov.id}"></th>
+                <td th:text="${mov.concepto}"></td>
+                <td th:text="${mov.monto}"></td>
+                <td th:text="${#temporals.format(mov.fechaCreacion,'dd/MM/YYYY')}"></td>
+                <td th:text="${mov.empleado}"></td>
+
+                <td><a th:href="@{/{id}/editar/(id=${mov.id})}" class="btn btn-warning"><i
+                        class="fas fa-edit"></i></a>
+                    <a href="#" onclick="eliminarContacto(this)" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i></a>
+                    <form th:action="@{/{id}/eliminar/(id=${mov.id})}" method="post"></form>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>

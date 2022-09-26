@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head">
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<aside th:replace="base :: aside"></aside>
+
+<div class="content-main-form">
+    <div class="content-form-mov">
+        <div class="header-index">
+            <h2>Sistema de Gestión de Ingreso y Egresos</h2>
+        </div>
+        <div class="sub-title">
+            <h3>Transacciones</h3>
+        </div>
+
+        <br>
+        <form action="" method="post" class="area-form" th:object="${movimientos}">
+            <div class="text-nuevo-mov-din"><h2>Nuevo Movimiento de Dinero</h2></div>
+            <div class="mb-3">
+                <label for="concepto">Concepto </label>
+                <input id="concepto" type="text" placeholder=" " th:field="*{concepto}" class="form-control" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('concepto')}" th:errors="*{concepto}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="monto">Monto </label>
+                <input id="monto" type="text" placeholder=" " th:field="*{monto}" class="form-control" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="fechaCreacion">Fecha creación </label>
+                <input id="fechaCreacion" type="date" th:field="*{fechaCreacion}" class="form-control" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="text-end">
+                <button class="btn btn-success"><i class="fas fa-save"></i>&nbsp;Guardar</button>
+                <a href="/" class="btn btn-light ms-2"><i class="fas fa-backward"></i>&nbsp;Cancelar </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
